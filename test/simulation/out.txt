@@ -1,0 +1,497 @@
+device PIC16F18345
+
+set oscillator.frequency            32
+
+set oscillator.frequencyunit        Mega
+
+set oscillator.rcfrequency          31
+
+set oscillator.rcfrequencyunit      Kilo
+
+set uart1io.uartioenabled           true
+
+set uart1io.output                  stdout
+
+set uart1io.outputfile              test/simulation/test.txt
+
+set breakoptions.wdtwarnings        Ignore
+
+
+hwtool sim
+
+Resetting SFRs
+Resetting peripherals
+
+
+program build/ceedling/generated/test/out/test_build.elf
+Programming target...
+Resetting SFRs
+Resetting peripherals
+Program succeeded.
+run
+Running
+
+Sleep 5000
+test_system.c:13:test_ShouldAbortApp_should_return_false_for_now:[42mPASS[00m
+
+-----------------------
+1 Tests 0 Failures 0 Ignored 
+[42mOK[00m
+tW9201-UART: Write attempted to a full FIFO buffer, data lost.
+:::11sse-
+
+1  0  02
+
+t:::11e_eS-
+
+1  0  02
+
+t:::11e_sS-
+
+1  0  04
+
+t:::11e_sS-
+
+1  0  04
+
+t:::11t_sS-
+
+1  0  0[
+
+t:::11tplS-
+
+1  0  0[
+
+t:::11tplS-
+
+1  0  0[
+
+t:::11tplS-
+
+1  0  0
+
+t:::11:paS-
+
+1  0  0
+
+t:::11:paA-
+
+1  0  0
+
+
+t:::11:paA-
+
+1  0  0
+
+
+t:::113AaA-
+
+1  0  0
+
+
+t:::113AfP-
+
+1  0  0
+
+
+t:::113AfP-
+
+1  0  0
+
+
+t:::113AfP-
+
+1  0  0 
+
+t:::113t_m-
+
+1  0  0 
+
+t:::113t_m-
+
+1  0  0d
+
+t:::113t_m-
+
+1  0  0d
+
+t:::113rnm-
+
+1  0  0d
+
+tc::113rn2-
+
+1  0  0e
+
+tc::113rn2-
+
+1  0  0e
+
+t.::113on4-
+
+1  0s 0e
+
+t.::113or4-
+
+1  0s 0r
+
+t.::113or4-
+
+1  0s  r
+
+tm::113br[-
+
+1  0e  r
+
+tm::113bu[-
+
+1  0e  r
+
+tm::113bu-
+
+1  0e  o
+
+te::113bu-
+
+1  0e  o
+
+te::113At--
+1  0r  o
+
+te::113At:--
+1  0r  n
+
+tt::113At:--
+1s 0r  n
+
+tt::113de:--
+
+s 0u  n
+
+tt::113de:--
+
+s  u  g
+
+tt::113dew--
+
+t  u  g
+
+ts::113lew--
+
+t  l  g
+
+ts::113lro--
+
+t  l  I
+
+ts::113lro--
+
+s  l  Im
+ty::113lro--
+
+s  i  Im
+ty::113u_n--
+
+s  i  I0
+ty::113u_n--
+
+e  i   0
+ts::113u_n--
+
+e  i   0
+ts::113odn--
+
+e  a   0
+ts::113od_--
+
+e  a  00
+ts:::13od_
+-
+
+T  a  0[
+t_:::13hd_
+-
+
+T  F  0[
+t_:::13hlr
+-
+
+T  F  0[
+t_:::13hlr
+-
+
+   F  0
+tt:::13Slr
+-
+
+      0
+tt:::13Suom-
+
+      0K
+tt:::13Suom-
+
+1     0K
+ts:::11Suom-
+
+1     0K
+ts:::11_oo0-
+
+1  0  0K
+ts:::11_of0-
+
+1  0  0O
+te:::11_of0-
+
+1  0  0O
+te:::11thf0-
+
+1  0  0O
+te:::11th_0-
+
+1  0  0m
+te:::11th_[-
+
+1  0  0m
+tt:::11sh_[-
+
+1  0  0m
+tt:::11sse-
+
+1  0  0m
+tt:::11sse-
+
+1  0  02
+
+t:::11sse-
+
+1  0  02
+
+t:::11e_sS-
+
+1  0  04
+
+t:::11e_sS-
+
+1  0  04
+
+t:::11e_sS-
+
+1  0  04
+
+t:::11tpsS-
+
+1  0  0[
+
+t:::11tplS-
+
+1  0  0[
+
+t:::11tplS-
+
+1  0  0
+
+t:::11:plS-
+
+1  0  0
+
+t:::11:paA-
+
+1  0  0
+
+t:::11:paA-
+
+1  0  0
+
+
+t:::11:paA-
+
+1  0  0
+
+
+t:::113AfP-
+
+1  0  0
+
+
+t:::113AfP-
+
+1  0  0
+
+
+t:::113AfP-
+
+1  0  0 
+
+t:::113tfP-
+
+1  0  0 
+
+t:::113t_m-
+
+1  0  0d
+
+t:::113t_m-
+
+1  0  0d
+
+t:::113r_m-
+
+1  0  0d
+
+tc::113rn2-
+
+1  0  0d
+
+tc::113rn2-
+
+1  0  0e
+
+t.::113rn2-
+
+1  0  0e
+
+t.::113or4-
+
+1  0s 0e
+
+t.::113or4-
+
+1  0s 0r
+
+tm::113or[-
+
+1  0s  r
+
+tm::113bu[-
+
+1  0e  r
+
+tm::113bu[-
+
+1  0e  o
+
+tm::113bu-
+
+1  0e  o
+
+te::113Au-
+
+1  0r  o
+
+te::113At:--
+1  0r  n
+
+te::113At:--
+1s 0r  n
+
+tt::113At:--
+
+s 0u  n
+
+tt::113de:--
+
+s  u  n
+
+tt::113de:--
+
+t  u  g
+
+ts::113dew--
+
+t  u  g
+
+ts::113lrw--
+
+t  l  g
+
+ts::113lro--
+
+t  l  Im
+ts::113lro--
+
+s  l  Im
+ty::113uro--
+
+s  i  Im
+ty::113u_n--
+
+s  i   0
+ty::113u_n--
+
+e  i   0
+ts::113o_n--
+
+e  a   0
+ts::113od_--
+
+e  a   0
+ts:::13od_
+-
+
+T  a  00
+t_:::13od_
+-
+
+T  a  0[
+t_:::13hl_
+-
+
+T  F  0[
+t_:::13hlr
+-
+
+T  F  0
+tt:::13hlr
+-
+
+   F  0
+tt:::13Sur
+-
+
+      0
+tt:::13Suom-
+
+      0K
+tt:::11Suom-
+
+1     0K
+ts:::11_uom-
+
+1  0  0K
+ts:::11_of0-
+
+1  0  0K
+ts:::11_of0-
+
+1  0  0O
+te:::11_of0-
+
+1  0  0O
+te:::11th_0-
+
+1  0  0O
+te:::11th_[-
+
+1  0  0m
+tt:::11th_[-
+
+1  0  0m
+tt:::11ss_[-
+
+1  0  0m
+tt:::11sse-
+
+1  0  0m
+
+quit
+ttSimulator halted
+---debug: Peripheral Accessed - PPS
+---debug: Peripheral Accessed - WDT
+---debug: Peripheral Accessed - UART1
+
+Stop at
+	address:0x591
+	file:/home/romulo/Documentos/Ceedling_xc8-master/vendor/ceedling/vendor/unity/src/unity.c
+	source line:84
+
+>

@@ -1,0 +1,274 @@
+---
+:project:
+  :use_exceptions: false
+  :use_mocks: true
+  :compile_threads: 1
+  :test_threads: 1
+  :use_test_preprocessor: false
+  :use_deep_dependencies: false
+  :generate_deep_dependencies: true
+  :test_file_prefix: test_
+  :options_paths: []
+  :release_build: false
+  :build_root: build/ceedling/generated
+  :which_ceedling: vendor/ceedling
+  :use_auxiliary_dependencies: true
+  :default_tasks:
+  - test:all
+:release_build:
+  :use_assembly: false
+  :artifacts: []
+:paths:
+  :test:
+  - "+:test/**"
+  - "-:test/support"
+  :source:
+  - src/**
+  :support:
+  - test/support
+  :include:
+  - "/opt/microchip/xc8/v2.10/pic/include"
+  :libraries: []
+  :test_toolchain_include: []
+  :release_toolchain_include: []
+:files:
+  :test: []
+  :source: []
+  :assembly: []
+  :support: []
+  :include: []
+:environment:
+- :rake_columns: '120'
+- :mcu: PIC16F18345
+- :mplabx_root: "/opt/microchip/mplabx/v5.30"
+- :path: "/bin:/usr/bin:/opt/microchip/xc8/v2.10/bin"
+:defines:
+  :test:
+  - &1 []
+  - UNITY_OUTPUT_COLOR
+  - TEST
+  :test_preprocess:
+  - *1
+  - TEST
+  :release: []
+  :release_preprocess: []
+  :use_test_definition: false
+  :commmon: []
+:libraries:
+  :flag: "-l${1}"
+  :path_flag: "-L ${1}"
+  :test: []
+  :test_preprocess: []
+  :release: []
+  :release_preprocess: []
+:flags: {}
+:extension:
+  :header: ".h"
+  :source: ".c"
+  :assembly: ".S"
+  :object: ".p1"
+  :libraries:
+  - ".a"
+  - ".so"
+  :executable: ".elf"
+  :map: ".map"
+  :list: ".lst"
+  :testpass: ".pass"
+  :testfail: ".fail"
+  :dependencies: ".d"
+:unity:
+  :vendor_path: "/home/romulo/Documentos/Ceedling_xc8-master/vendor/ceedling/vendor"
+  :defines:
+  - UNITY_EXCLUDE_SETJMP_H
+  - UNITY_EXCLUDE_MATH_H
+  - UNITY_EXCLUDE_FLOAT
+:cmock:
+  :vendor_path: "/home/romulo/Documentos/Ceedling_xc8-master/vendor/ceedling/vendor"
+  :defines:
+  - CMOCK_MEM_SIZE=256
+  :includes: []
+  :mock_prefix: mock_
+  :when_no_prototypes: :warn
+  :treat_externs: :include
+  :enforce_strict_ordering: true
+  :fail_on_unexpected_calls: false
+  :exclude_setjmp_h: true
+  :plugins:
+  - :ignore
+  - :ignore_arg
+  - :callback
+  - :expect_any_args
+  :treat_as:
+    uint8: HEX8
+    uint16: HEX16
+    uint32: UINT32
+    int8: INT8
+    bool: UINT8
+  :mock_path: build/ceedling/generated/test/mocks
+  :verbosity: 3
+  :unity_helper: false
+:cexception:
+  :vendor_path: "/home/romulo/Documentos/Ceedling_xc8-master/vendor/ceedling/vendor"
+  :defines: []
+:test_runner:
+  :includes: []
+  :file_suffix: _runner
+:tools:
+  :release_compiler:
+    :name: Microchip XC8 Compiler
+    :executable: xc8-cc
+    :arguments:
+    - "-mcpu=#{ENV['MCU']}"
+    - "-std=c99"
+    - "-O1"
+    - "-Wa,-a"
+    - -D"$": COLLECTION_DEFINES_RELEASE_AND_VENDOR
+    - -I"$": COLLECTION_PATHS_SOURCE_AND_INCLUDE
+    - "-Iinclude/"
+    - -o "${2}"
+    - "-c"
+    - "${1}"
+    :stderr_redirect: :none
+    :background_exec: :none
+    :optional: false
+  :release_assembler:
+    :name: Microchip XC8 Compiler
+    :executable: xc8
+    :arguments:
+    - "-mcpu=#{ENV['MCU']}"
+    - "-std=c99"
+    - "-O1"
+    - "-Wa,-a"
+    - -D"$": COLLECTION_DEFINES_RELEASE_AND_VENDOR
+    - -I"$": COLLECTION_PATHS_SOURCE_AND_INCLUDE
+    - -o "${2}"
+    - "-c"
+    - "${1}"
+    :stderr_redirect: :none
+    :background_exec: :none
+    :optional: false
+  :release_linker:
+    :name: Microchip XC8 Linker
+    :executable: xc8
+    :arguments:
+    - "-mcpu=#{ENV['MCU']}"
+    - "-gdwarf-3"
+    - -D"$": COLLECTION_DEFINES_RELEASE_AND_VENDOR
+    - -I"$": COLLECTION_PATHS_SOURCE_AND_INCLUDE
+    - -Wl,-Map="${3}"
+    - -o "${2}"
+    - "{'${1}'.split(' ').map { |x| (x.include? '/out/c/') ? (Pathname(x).sub_ext('.p1')).to_s
+      : x }.join(' ') }"
+    - "${4}"
+    :stderr_redirect: :none
+    :background_exec: :none
+    :optional: false
+  :test_compiler:
+    :name: Microchip XC8 Compiler
+    :executable: xc8-cc
+    :arguments:
+    - "-mcpu=#{ENV['MCU']}"
+    - "-std=c99"
+    - "-O1"
+    - "-Wa,-a"
+    - -D"$": COLLECTION_DEFINES_TEST_AND_VENDOR
+    - -I"$": COLLECTION_PATHS_TEST_SUPPORT_SOURCE_INCLUDE_VENDOR
+    - "-Iinclude/"
+    - -o "${2}"
+    - "-c"
+    - "${1}"
+    :stderr_redirect: :none
+    :background_exec: :none
+    :optional: false
+  :test_file_preprocessor:
+    :name: Microchip XC8 preprocessor
+    :executable: xc8-cc
+    :arguments:
+    - "-mcpu=#{ENV['MCU']}"
+    - "-std=c99"
+    - -D"$": COLLECTION_DEFINES_TEST_AND_VENDOR
+    - -I"$": COLLECTION_PATHS_TEST_SUPPORT_SOURCE_INCLUDE_VENDOR
+    - "${1}"
+    :stderr_redirect: :none
+    :background_exec: :none
+    :optional: false
+  :test_includes_preprocessor:
+    :name: Microchip XC8 includes preprocessor
+    :executable: xc8-cc
+    :arguments:
+    - "-mcpu=#{ENV['MCU']}"
+    - "-std=c99"
+    - -D"$": COLLECTION_DEFINES_TEST_AND_VENDOR
+    - -I"$": COLLECTION_PATHS_TEST_SUPPORT_SOURCE_INCLUDE_VENDOR
+    - "${1}"
+    :stderr_redirect: :none
+    :background_exec: :none
+    :optional: false
+  :test_linker:
+    :name: Microchip XC8 Linker
+    :executable: xc8-cc
+    :arguments:
+    - "-mcpu=#{ENV['MCU']}"
+    - "-gdwarf-3"
+    - -D"$": COLLECTION_DEFINES_TEST_AND_VENDOR
+    - -I"$": COLLECTION_PATHS_TEST_SUPPORT_SOURCE_INCLUDE_VENDOR
+    - -Wl,-Map="${3}"
+    - -o"./build/ceedling/generated/test/out/test_build.elf"
+    - "${1}"
+    - "${4}"
+    :stderr_redirect: :none
+    :background_exec: :none
+    :optional: false
+  :test_fixture:
+    :executable: ruby
+    :name: Microchip simulator test fixture
+    :stderr_redirect: :win
+    :arguments:
+    - test/simulation/sim_test_fixture.rb
+    :background_exec: :none
+    :optional: false
+:test_compiler:
+  :arguments: []
+:test_linker:
+  :arguments: []
+:test_fixture:
+  :arguments: []
+  :link_objects: []
+:test_includes_preprocessor:
+  :arguments: []
+:test_file_preprocessor:
+  :arguments: []
+:test_dependencies_generator:
+  :arguments: []
+:release_compiler:
+  :arguments: []
+:release_linker:
+  :arguments: []
+:release_assembler:
+  :arguments: []
+:release_dependencies_generator:
+  :arguments: []
+:plugins:
+  :load_paths:
+  - vendor/ceedling/plugins
+  - vendor/ceedling/lib/../plugins
+  :enabled:
+  - stdout_pretty_tests_report
+  - module_generator
+  - raw_output_report
+  - warnings_report
+  :display_raw_test_results: false
+  :stdout_pretty_tests_report_path: vendor/ceedling/plugins/stdout_pretty_tests_report
+  :module_generator_path: vendor/ceedling/plugins/module_generator
+  :raw_output_report_path: vendor/ceedling/plugins/raw_output_report
+  :warnings_report_path: vendor/ceedling/plugins/warnings_report
+:gcov:
+  :reports:
+  - HtmlDetailed
+  :gcovr:
+    :html_medium_threshold: 75
+    :html_high_threshold: 90
+:module_generator:
+  :project_root: "./"
+  :source_root: src/
+  :test_root: test/
