@@ -11,3 +11,5 @@ On Windows, to avoid issues with spaces in folder names, it is advised to create
 
  * mklink /j C:\mplabx "C:\Program Files (x86)\Microchip\MPLABX\v5.30"
  * mklink /j C:\xc8 "C:\Program Files (x86)\Microchip\xc8\v2.10"
+
+fork from https://github.com/jmrubillon/Ceedling_xc8
